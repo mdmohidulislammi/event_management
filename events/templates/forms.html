@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block forms %}
+
+<div class="w-full max-w-md sm:max-w-lg md:max-w-2xl 
+            mx-auto bg-gray-700 mt-4 rounded-xl 
+            shadow-md p-4 sm:p-6">
+
+    <!-- Messages -->
+    {% if messages %}
+    <div class="bg-green-500 text-white text-center 
+                rounded-lg p-3 mb-4">
+        {% for message in messages %}
+            <p class="font-semibold">{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Form -->
+    <form action="" method="POST" class="w-full space-y-4 text-white">
+        {% csrf_token %}
+
+        <!-- Django Forms -->
+        <div class="space-y-3">
+            {{ event_form }}
+            {{ category_form }}
+            {{ participant_form }}
+        </div>
+
+        <!-- Submit Button -->
+        <button
+            type="submit"
+            class="w-full sm:w-1/2 mx-auto flex justify-center items-center
+                   bg-blue-500 hover:bg-blue-600
+                   text-white font-bold p-3 rounded-lg
+                   transition"
+        >
+            Submit
+        </button>
+    </form>
+
+</div>
+
+{% endblock forms %}

@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/output.css' %}">
+  </head>
+
+  <body class="bg-[linear-gradient(60deg,#2E1F1B,#5E4B43)] min-h-screen w-full">
+
+    <!-- HEADER -->
+    <header class="text-white">
+      <nav class="p-4">
+
+        <!-- NAV CONTAINER -->
+        <div class="flex items-center justify-between md:grid md:grid-cols-8 md:gap-2">
+
+          <!-- LOGO -->
+          <div class="font-semibold text-xl px-5 py-3 bg-green-500 rounded-3xl flex justify-center items-center
+                      md:col-start-1">
+            Logo
+          </div>
+
+          <!-- NAV LINKS (HIDDEN ON MOBILE) -->
+          <div class="hidden md:flex md:col-start-2 md:col-end-8 gap-6 justify-center items-center text-lg">
+            <a href=" {% url 'home' %}?type=home" class="hover:text-green-200 font-semibold" >Home</a>
+            <a href="#" class="hover:text-green-200 font-semibold">Services</a>
+            <a href="#" class="hover:text-green-200 font-semibold">Contact</a>
+          </div>
+
+          <!-- LOGIN BUTTON -->
+          <div class="hidden md:flex md:col-start-8 justify-center">
+            <div class="flex gap-2 m-4">
+           <button class="mt-2 text-blue-600 bg-white px-4 py-2 rounded-xl font-semibold">
+            LogIn
+          </button>
+           <button class="mt-2 text-blue-600 bg-white px-4 py-2 rounded-xl font-semibold">
+            Register
+          </button>
+         </div>
+          </div>
+
+          <!-- MOBILE MENU BUTTON -->
+          <div class="md:hidden">
+            <button id="menu-btn" class="text-white text-2xl">☰</button>
+          </div>
+
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div id="mobile-menu" class="hidden flex-col mt-4 gap-3 md:hidden text-center">
+          <a href="#" class="hover:text-green-200 font-semibold">Home</a>
+          <a href="#" class="hover:text-green-200 font-semibold">Services</a>
+          <a href="#" class="hover:text-green-200 font-semibold">Contact</a>
+         <div class="flex gap-3 justify-center items-center ">
+           <button class="mt-2 text-blue-600 bg-white px-4 py-2 rounded-xl font-semibold">
+            LogIn
+          </button>
+           <button class="mt-2 text-blue-600 bg-white px-4 py-2 rounded-xl font-semibold">
+            Register
+          </button>
+         </div>
+        </div>
+
+      </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main class="p-6 text-white text-center">
+      <h1 class="text-2xl md:text-4xl font-bold">Welcome to Event Management</h1>
+
+       {% block body %}
+         
+       {% endblock body %}
+       {% block forms %}{% endblock forms %}
+       {% block login %}{% endblock login %}
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-center text-white p-4 opacity-80">
+      © {{current_year}} Event Management
+    </footer>
+
+
+
+    <!-- MOBILE MENU SCRIPT -->
+    <script>
+      const btn = document.getElementById("menu-btn");
+      const menu = document.getElementById("mobile-menu");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>
